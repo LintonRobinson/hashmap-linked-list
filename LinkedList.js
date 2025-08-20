@@ -4,31 +4,24 @@ class LinkedList {
         this.head = null;
     };
     
-    prependNode(data) {
+    prependNode(value,hashCode,key) {
         if (this.head === null) {
-            this.head = new Node();
-            this.head.value = data;
+            this.head = new Node(value,hashCode,key);
             return;
         }; 
-
-        let prependedNode = new Node();
-        prependedNode.value = data;
+        let prependedNode = new Node(value,hashCode,key);
         prependedNode.nextNode = this.head;
         this.head = prependedNode;
     };
 
-    appendNode(data) {
+    appendNode(value,hashCode,key) {
         if (this.head === null) {
-            this.head = new Node();
-            this.head.value = data;
+            this.head = new Node(value,hashCode,key);
             return;
         }; 
-
         let currentNode = this.head;
         while (currentNode.nextNode != null) currentNode = currentNode.nextNode;
-        currentNode.nextNode = new Node();
-        currentNode.nextNode.value = data;
-
+        currentNode.nextNode = new Node(value,hashCode,key);
     };
 
 
@@ -114,10 +107,9 @@ class LinkedList {
         return linkedListString
     }
 
-    insertAt(value, index) {
+    insertAt(value,hashCode,key, index) {
         if (this.head === null) {
-            this.head = new Node();
-            this.head.value = value;
+            this.head = new Node(value,hashCode,key);
             return 
         }; 
 
@@ -132,13 +124,11 @@ class LinkedList {
         }; 
 
         if (currentIndex === 0) { // If it's the first node to be added, reassign head
-            let prependedNode = new Node();
-            prependedNode.value = value;
+            let prependedNode = new Node(value,hashCode,key);
             prependedNode.nextNode = this.head;
             this.head = prependedNode;
         } else {
-            previousNode.nextNode = new Node();
-            previousNode.nextNode.value = value;
+            previousNode.nextNode = new Node(value,hashCode,key);
             previousNode.nextNode.nextNode = currentNode;
         };     
     }
@@ -153,17 +143,13 @@ class LinkedList {
         while (currentIndex != index) {  
             previousNode = currentNode;
             currentNode = currentNode.nextNode;
-            console.log('Ran',currentIndex);
             currentIndex++;
             
 
         }; 
         
         if (currentIndex === 0 && currentNode.nextNode === null) { // only 1 node in list
-            console.log('Ya Mamas Culpret',currentIndex)
             this.head = null;
-            
-        
         } else if (currentIndex === 0) { // head of list, and more than one node
             this.head = this.head.nextNode
             

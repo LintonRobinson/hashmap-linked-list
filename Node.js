@@ -1,8 +1,8 @@
 class Node {
-    constructor() {
-        this.hashCode;
-        this.key;
-        this.value = null;
+    constructor(hashCode,key,value) {
+        this.hashCode = hashCode;
+        this.key = key;
+        this.value = value;
         this.nextNode = null;
     };
 }
