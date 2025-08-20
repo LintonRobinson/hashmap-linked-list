@@ -4,24 +4,24 @@ class LinkedList {
         this.head = null;
     };
     
-    prependNode(value,hashCode,key) {
+    prependNode(value,bucketIndex,key) {
         if (this.head === null) {
-            this.head = new Node(value,hashCode,key);
+            this.head = new Node(value,bucketIndex,key);
             return;
         }; 
-        let prependedNode = new Node(value,hashCode,key);
+        let prependedNode = new Node(value,bucketIndex,key);
         prependedNode.nextNode = this.head;
         this.head = prependedNode;
     };
 
-    appendNode(value,hashCode,key) {
+    appendNode(value,bucketIndex,key) {
         if (this.head === null) {
-            this.head = new Node(value,hashCode,key);
+            this.head = new Node(value,bucketIndex,key);
             return;
         }; 
         let currentNode = this.head;
         while (currentNode.nextNode != null) currentNode = currentNode.nextNode;
-        currentNode.nextNode = new Node(value,hashCode,key);
+        currentNode.nextNode = new Node(value,bucketIndex,key);
     };
 
 
@@ -68,7 +68,7 @@ class LinkedList {
         while (currentNode.nextNode != null) {
             previousNode = currentNode;
             currentNode = currentNode.nextNode;
-        } 
+        };
         previousNode.nextNode = null;
     };
 
@@ -78,7 +78,7 @@ class LinkedList {
         while (currentNode != null) {
             if (currentNode.value === value) return true;
             currentNode = currentNode.nextNode;
-        } 
+        };
         return false;
     };
 
@@ -86,11 +86,12 @@ class LinkedList {
         if (this.head === null) throw Error('Link list is empty.'); 
         let currentIndex = 0;
         let currentNode = this.head;
+        
         while (currentNode != null) {
             if (currentNode.value === value) return currentIndex;
             currentNode = currentNode.nextNode;
             currentIndex++; 
-        } 
+        };
         return null;
     }
 
@@ -98,18 +99,18 @@ class LinkedList {
        if (this.head === null) throw Error('Link list is empty.'); 
         let currentNode = this.head;
         let linkedListString = "";
+        
         while (currentNode != null) {
             linkedListString += `(${currentNode.value})-->`
             currentNode = currentNode.nextNode;
-        }
+        };
         linkedListString += `(null)-->`;
-        
         return linkedListString
     }
 
-    insertAt(value,hashCode,key, index) {
+    insertAt(value,bucketIndex,key, index) {
         if (this.head === null) {
-            this.head = new Node(value,hashCode,key);
+            this.head = new Node(value,bucketIndex,key);
             return 
         }; 
 
@@ -124,11 +125,11 @@ class LinkedList {
         }; 
 
         if (currentIndex === 0) { // If it's the first node to be added, reassign head
-            let prependedNode = new Node(value,hashCode,key);
+            let prependedNode = new Node(value,bucketIndex,key);
             prependedNode.nextNode = this.head;
             this.head = prependedNode;
         } else {
-            previousNode.nextNode = new Node(value,hashCode,key);
+            previousNode.nextNode = new Node(value,bucketIndex,key);
             previousNode.nextNode.nextNode = currentNode;
         };     
     }
@@ -144,22 +145,16 @@ class LinkedList {
             previousNode = currentNode;
             currentNode = currentNode.nextNode;
             currentIndex++;
-            
-
         }; 
-        
+
         if (currentIndex === 0 && currentNode.nextNode === null) { // only 1 node in list
             this.head = null;
         } else if (currentIndex === 0) { // head of list, and more than one node
             this.head = this.head.nextNode
-            
-        } 
-        else if (currentNode.nextNode === null) { // tail
+        } else if (currentNode.nextNode === null) { // tail
             previousNode.nextNode = null;
-            
         } else {
             previousNode.nextNode = currentNode.nextNode;
-            
         };        
     };
 };

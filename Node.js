@@ -1,6 +1,6 @@
 class Node {
-    constructor(hashCode,key,value) {
-        this.hashCode = hashCode;
+    constructor(bucketIndex,key,value) {
+        this.bucketIndex = bucketIndex;
         this.key = key;
         this.value = value;
         this.nextNode = null;
