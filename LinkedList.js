@@ -82,6 +82,16 @@ class LinkedList {
         return false;
     };
 
+    listContainsKey(key) {
+        if (this.head === null) throw Error('Link list is empty.'); 
+        let currentNode = this.head;
+        while (currentNode != null) {
+            if (currentNode.key === key) return true;
+            currentNode = currentNode.nextNode;
+        };
+        return false;
+    };
+
     findListValueIndex(value) {
         if (this.head === null) throw Error('Link list is empty.'); 
         let currentIndex = 0;
@@ -93,7 +103,20 @@ class LinkedList {
             currentIndex++; 
         };
         return null;
-    }
+    };
+
+    findListKeyIndex(key) {
+        if (this.head === null) throw Error('Link list is empty.'); 
+        let currentIndex = 0;
+        let currentNode = this.head;
+        
+        while (currentNode != null) {
+            if (currentNode.key === key) return currentIndex;
+            currentNode = currentNode.nextNode;
+            currentIndex++; 
+        };
+        return null;
+    };
 
     linkedListToString() {
        if (this.head === null) throw Error('Link list is empty.'); 
@@ -108,7 +131,7 @@ class LinkedList {
         return linkedListString
     }
 
-    insertAt(value,bucketIndex,key, index) {
+    insertNodeAt(value,bucketIndex,key, index) {
         if (this.head === null) {
             this.head = new Node(value,bucketIndex,key);
             return 
@@ -134,7 +157,7 @@ class LinkedList {
         };     
     }
 
-    removeAt(index) {
+    removeNodeAt(index) {
         if (this.head === null) throw Error('Link list is empty.'); 
 
         let currentIndex = 0;
