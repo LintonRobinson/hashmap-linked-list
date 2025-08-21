@@ -1,6 +1,6 @@
 {
   "name": "hashmap-linked-list",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A link list object with methods/properties for hash mapping",
   "main": "LinkedList.js",
   "repository": {
